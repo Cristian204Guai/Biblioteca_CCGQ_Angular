@@ -1,0 +1,21 @@
+<div class="card shadow-sm">
+  <div class="card-header fw-bold">Agregar libro</div>
+  <div class="card-body">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <input id="titulo" class="form-control" [(ngModel)]="titulo" />
+    </div>
+    <div class="mb-3">
+      <label for="autor" class="form-label">Autor</label>
+      <input id="autor" class="form-control" [(ngModel)]="autor" />
+    </div>
+    <div class="mb-3">
+      <label for="anio" class="form-label">Año</label>
+      <input id="anio" type="number" class="form-control" [(ngModel)]="anio" />
+    </div>
+    <button class="btn btn-primary w-100" (click)="guardar()"
+            [disabled]="!titulo.trim() || !autor.trim()">
+      Guardar
+    </button>
+  </div>
+</div>

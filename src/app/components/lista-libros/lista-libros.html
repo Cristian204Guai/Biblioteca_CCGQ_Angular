@@ -1,0 +1,31 @@
+<h2 class="h4 mb-3">Catálogo</h2>
+
+@if (biblioteca.libros().length === 0) {
+  <div class="alert alert-info">Aún no hay libros. ¡Agrega el primero!</div>
+}
+
+<div class="row row-cols-1 row-cols-md-2 g-3">
+  @for (libro of biblioteca.libros(); track libro.id) {
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ libro.autor }} · {{ libro.anio }}</h6>
+          <span class="badge" [class]="libro.disponible ? 'text-bg-success' : 'text-bg-warning'">
+            {{ libro.disponible ? 'Disponible' : 'Prestado' }}
+          </span>
+        </div>
+        <div class="card-footer d-flex gap-2">
+          <button class="btn btn-sm btn-outline-secondary"
+                  (click)="biblioteca.alternarDisponibilidad(libro.id)">
+            Cambiar estado
+          </button>
+          <button class="btn btn-sm btn-outline-danger ms-auto"
+                  (click)="biblioteca.eliminar(libro.id)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
