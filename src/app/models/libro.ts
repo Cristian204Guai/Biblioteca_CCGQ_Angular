@@ -4,4 +4,5 @@ export interface Libro {
     autor: string;
     anio: number;
     disponible: boolean;
+    favorito: boolean;
 }

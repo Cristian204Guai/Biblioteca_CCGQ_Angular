@@ -20,6 +20,14 @@
                   (click)="biblioteca.alternarDisponibilidad(libro.id)">
             Cambiar estado
           </button>
+
+          <!-- Boton de favoritos-->
+          <button class="btn btn-sm btn-outline-warning"
+        (click)="biblioteca.alternarFavorito(libro.id)">
+        {{ libro.favorito ? '⭐ Favorito' : '☆ Favorito' }}
+        </button>
+
+
           <button class="btn btn-sm btn-outline-danger ms-auto"
                   (click)="biblioteca.eliminar(libro.id)">
             Eliminar

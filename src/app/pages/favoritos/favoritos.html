@@ -1,0 +1,60 @@
+<main class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">⭐ Mis Favoritos de Cris</h1>
+    <a class="btn btn-outline-secondary" routerLink="/">← Volver al inicio</a>
+  </div>
+
+  <div class="row g-4">
+    <!-- Columna izquierda: dos formas de agregar -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header fw-bold">Agregar uno existente</div>
+        <div class="card-body">
+          @if (biblioteca.noFavoritos().length === 0) {
+            <p class="text-muted mb-0">Todos los libros ya son favoritos.</p>
+          } @else {
+            <select class="form-select mb-3" [(ngModel)]="seleccionadoId">
+              <option [ngValue]="null">Selecciona un libro...</option>
+              @for (libro of biblioteca.noFavoritos(); track libro.id) {
+                <option [ngValue]="libro.id">{{ libro.titulo }}</option>
+              }
+            </select>
+            <button class="btn btn-warning w-100"
+                    (click)="agregarExistente()"
+                    [disabled]="seleccionadoId === null">
+              Agregar a favoritos
+            </button>
+          }
+        </div>
+      </div>
+
+      <app-formulario-libro [esFavorito]="true" />
+    </div>
+
+    <!-- Columna derecha: lista de favoritos -->
+    <div class="col-lg-8">
+      @if (biblioteca.favoritos().length === 0) {
+        <div class="alert alert-info">Aún no tienes favoritos.</div>
+      }
+
+      <div class="row row-cols-1 row-cols-md-2 g-3">
+        @for (libro of biblioteca.favoritos(); track libro.id) {
+          <div class="col">
+            <div class="card h-100 border-warning shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">{{ libro.titulo }}</h5>
+                <h6 class="card-subtitle text-muted">{{ libro.autor }} · {{ libro.anio }}</h6>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-outline-danger"
+                        (click)="biblioteca.alternarFavorito(libro.id)">
+                  Quitar de favoritos
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</main>
