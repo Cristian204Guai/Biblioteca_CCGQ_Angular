@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+  // Activa el Pipeline cuando GitHub notifica un push
+    triggers {
+        githubPush()
+    }
+
     tools {
         // Asegúrate de tener configurado Node.js en Manage Jenkins > Tools
         nodejs 'NodeJS-20' 
