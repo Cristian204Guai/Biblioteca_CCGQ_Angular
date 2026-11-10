@@ -1,12 +1,17 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
-        <a class = "navbar-brand" href="#">
+        <a class = "navbar-brand" routerLink="/" href="#">
             <img src="libreria-digital.png" alt="Avatar Logo" style="width:40px;"
-            class="rounded-pill">
+            class="rounded-pill"> Mi Biblioteca Cristian_GuaiTarilla
         </a>
-        <span class="navbar-brand mb-0 h1">Mi Biblioteca Cris</span>
-        <span class="badge text-bg-primary fs-6">{{ biblioteca.total() }} libros</span>
+        <div class="d-flex gap-2">
+            <span class="badge text-bg-primary fs-6">{{ biblioteca.total() }} libros</span>
+      <a class="badge text-bg-warning fs-6 text-decoration-none" routerLink="/favoritos">
+        ⭐ {{ biblioteca.favoritos().length }}
+      </a>
+        </div>
+        
 
     </div>
     
